@@ -1,0 +1,15 @@
+[⠊] Compiling...
+No files changed, compilation skipped
+
+Ran 8 tests for test/week02/NFTMarketTest.t.sol:NFTMarketTest
+[PASS] testBuyNftPayLessShouldFail() (gas: 129762)
+[PASS] testBuyNftPayMoreThanPrice() (gas: 162588)
+[PASS] testBuyNftSuccess() (gas: 161691)
+[PASS] testBuyNftTwiceShouldFail() (gas: 162515)
+[PASS] testBuySellerOwnNFT() (gas: 181363)
+[PASS] testFuzzListAndBuyNFT(uint96,uint160) (runs: 259, μ: 233500, ~: 233843)
+[PASS] testListNftFail() (gas: 167966)
+[PASS] testListNftSuccess() (gas: 123803)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 31.97ms (31.26ms CPU time)
+
+Ran 1 test suite in 183.57ms (31.97ms CPU time): 8 tests passed, 0 failed, 0 skipped (8 total tests)
