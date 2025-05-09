@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.25;
+pragma solidity ^0.8.25;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Bank} from "../src/Bank.sol";
+import {Bank} from "src/week02/Bank.sol";
 
 contract DeployBank is Script {
     Bank public bank;

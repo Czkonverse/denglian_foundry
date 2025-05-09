@@ -22,6 +22,8 @@ interface IERC20 {
         address recipient,
         uint256 amount
     ) external returns (bool);
+
+    function balanceOf(address account) external view returns (uint256);
 }
 
 interface IERC20Receiver {
@@ -39,6 +41,8 @@ contract NFTMarket {
     error NFTMarket__NotListing();
     error NFTMarket__NotRequiredToken();
     error NFTMarket__NotEnoughAmountTokenToBuy();
+    error NFTMarket__AlreadyListed();
+    error NFTMarket__BuyerIsSeller();
 
     struct Listing {
         address seller;
@@ -70,12 +74,6 @@ contract NFTMarket {
         address _tokenAddress,
         uint256 _price
     ) external {
-        console.log("list - address(this)", address(this));
-        console.log("list - msg.sender", msg.sender);
-        console.log("list - _nftAddress", _nftAddress);
-        console.log("list - _nftTokenId", _nftTokenId);
-        console.log("list - _tokenAddress", _tokenAddress);
-        console.log("list - _price", _price);
         // ERC721 check
         IERC721 nft = IERC721(_nftAddress);
 
@@ -84,11 +82,12 @@ contract NFTMarket {
             revert NFTMarket__NotOwner();
         }
         // 确保NFT市场合约 NFTMarket 有权转移卖家的 NFT
-        if (
-            nft.getApproved(_nftTokenId) != address(0) &&
-            !nft.isApprovedForAll(msg.sender, address(this))
-        ) {
+        if (nft.getApproved(_nftTokenId) != address(this)) {
             revert NFTMarket__NotApprovedForTransfer();
+        }
+        // 确保没有重复上架
+        if (listings[_nftAddress][_nftTokenId].price != 0) {
+            revert NFTMarket__AlreadyListed();
         }
 
         // Create a new listing
@@ -127,8 +126,16 @@ contract NFTMarket {
             revert NFTMarket__NotListing();
         }
 
+        // 不能购买自己的NFT
+        if (listing.seller == msg.sender) {
+            revert NFTMarket__BuyerIsSeller();
+        }
+
         // ERC20 token
         IERC20 erc20 = IERC20(listing.erc20Token);
+        if (erc20.balanceOf(msg.sender) < listing.price) {
+            revert NFTMarket__NotEnoughAmountTokenToBuy();
+        }
         erc20.transferFrom(msg.sender, listing.seller, listing.price);
         // ERC721 nft transfer
         IERC721 nft = IERC721(listing.nftAddress);
