@@ -22,3 +22,4 @@ verify:
 		0xecE0E48Ab0d07559eFdE7315340c81C21bf9F108 \
 		src/MyToken.sol:MyToken \
 		--etherscan-api-key $$ETHERSCAN_API_KEY
+

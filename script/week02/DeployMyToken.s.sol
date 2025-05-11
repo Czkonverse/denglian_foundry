@@ -9,6 +9,7 @@ contract DeployMyToken is Script {
 
     string public name = "KunverseTokenERC20";
     string public symbol = "KTK";
+    uint256 public initialSupply = 1000 * 1e18;
 
     function setUp() public {}
 
@@ -16,7 +17,7 @@ contract DeployMyToken is Script {
         vm.startBroadcast();
 
         vm.deal(address(this), 1e18);
-        myToken = new MyToken(name, symbol);
+        myToken = new MyToken(name, symbol, initialSupply);
 
         vm.stopBroadcast();
     }
