@@ -2,42 +2,8 @@
 pragma solidity ^0.8.25;
 
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-
-interface IERC721 {
-    function transferFrom(address from, address to, uint256 tokenId) external;
-
-    function ownerOf(uint256 tokenId) external view returns (address);
-
-    function isApprovedForAll(
-        address owner,
-        address operator
-    ) external view returns (bool);
-
-    function getApproved(uint256 tokenId) external view returns (address);
-}
-
-interface IERC20 {
-    function transfer(
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
-
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
-
-    function balanceOf(address account) external view returns (uint256);
-}
-
-interface IERC20Receiver {
-    function tokensReceived(
-        address from,
-        uint256 amount,
-        bytes calldata data
-    ) external;
-}
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 contract NFTMarket is ReentrancyGuard {
     error NFTMarket__NotOwner();

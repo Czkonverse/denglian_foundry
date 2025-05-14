@@ -1,0 +1,63 @@
+Compiling 1 files with Solc 0.8.25
+Solc 0.8.25 finished in 520.80ms
+Compiler run successful!
+
+Ran 2 tests for test/week03/NFTMarketV3Test.t.sol:NFTMarketV3Test
+[PASS] testCannotPermitBuyWithInvalidSignature() (gas: 63571)
+Traces:
+  [63571] NFTMarketV3Test::testCannotPermitBuyWithInvalidSignature()
+    ├─ [0] VM::sign("<pk>", 0x6c3016d16593efe16110d6db64035892c437820a2877d316168f9a9e40550a56) [staticcall]
+    │   └─ ← [Return] 28, 0x763183179a93dc1991e87c63e0de4c728998883a3ad63e1066cef05a654b1f90, 0x5a1af90833f9e14e65200c4599ce0ef0aaf0fd615a08aced8e3a63b9ca4df0cb
+    ├─ [0] VM::prank(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c)
+    │   └─ ← [Return]
+    ├─ [24735] MockERC20::approve(NFTMarketV3: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 1000000000000000000 [1e18])
+    │   ├─ emit Approval(owner: 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, spender: NFTMarketV3: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], value: 1000000000000000000 [1e18])
+    │   └─ ← [Return] true
+    ├─ [0] VM::expectRevert(custom error 0xc31eb0e0: ^ը-)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c)
+    │   └─ ← [Return]
+    ├─ [18856] NFTMarketV3::permitBuy(MockERC721: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 1, 1000000000000000000 [1e18], 0x763183179a93dc1991e87c63e0de4c728998883a3ad63e1066cef05a654b1f905a1af90833f9e14e65200c4599ce0ef0aaf0fd615a08aced8e3a63b9ca4df0cb1c)
+    │   ├─ [3000] PRECOMPILES::ecrecover(0x6c3016d16593efe16110d6db64035892c437820a2877d316168f9a9e40550a56, 28, 53460396404128696464837000526425826958863852917743533911630113060875544502160, 40755813152171858720699667370948770797818995648185506979183037327830848237771) [staticcall]
+    │   │   └─ ← [Return] 0x000000000000000000000000c09d90e7e39ebb97a0e691ba63cdb51b6bf3a314
+    │   └─ ← [Revert] NFTMarket__InvalidSignature()
+    └─ ← [Stop]
+
+[PASS] testPermitBuy() (gas: 129972)
+Traces:
+  [167731] NFTMarketV3Test::testPermitBuy()
+    ├─ [0] VM::sign("<pk>", 0x6c3016d16593efe16110d6db64035892c437820a2877d316168f9a9e40550a56) [staticcall]
+    │   └─ ← [Return] 28, 0x56e8081eb66f0ef5230f138a049c1f300951d471a97799db3a28af5ab74401ed, 0x7d2eb09f477259fd115fa7120059dda8d685102fd586c055a702f41cd69ba4d0
+    ├─ [0] VM::prank(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c)
+    │   └─ ← [Return]
+    ├─ [24735] MockERC20::approve(NFTMarketV3: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 1000000000000000000 [1e18])
+    │   ├─ emit Approval(owner: 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, spender: NFTMarketV3: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], value: 1000000000000000000 [1e18])
+    │   └─ ← [Return] true
+    ├─ [0] VM::prank(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c)
+    │   └─ ← [Return]
+    ├─ [115936] NFTMarketV3::permitBuy(MockERC721: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 1, 1000000000000000000 [1e18], 0x56e8081eb66f0ef5230f138a049c1f300951d471a97799db3a28af5ab74401ed7d2eb09f477259fd115fa7120059dda8d685102fd586c055a702f41cd69ba4d01c)
+    │   ├─ [3000] PRECOMPILES::ecrecover(0x6c3016d16593efe16110d6db64035892c437820a2877d316168f9a9e40550a56, 28, 39308869539171192774623953884789295184226941885718801859926255378654617141741, 56621600039400873636374560796429525126011113212345107215222724454629823456464) [staticcall]
+    │   │   └─ ← [Return] 0x000000000000000000000000e05fcc23807536bee418f142d19fa0d21bb0cff7
+    │   ├─ [811] MockERC20::allowance(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, NFTMarketV3: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]) [staticcall]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ [30854] MockERC20::transferFrom(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, 0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7, 1000000000000000000 [1e18])
+    │   │   ├─ emit Transfer(from: 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, to: 0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7, value: 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [46068] MockERC721::safeTransferFrom(0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7, 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, 1)
+    │   │   ├─ emit Transfer(from: 0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7, to: 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, tokenId: 1)
+    │   │   └─ ← [Stop]
+    │   ├─ emit NFTPurchased(nftAddress: MockERC721: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], tokenId: 1, buyer: 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, seller: 0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7, price: 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [638] MockERC721::ownerOf(1) [staticcall]
+    │   └─ ← [Return] 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c
+    ├─ [0] VM::assertEq(0x0376AAc07Ad725E01357B1725B5ceC61aE10473c, 0x0376AAc07Ad725E01357B1725B5ceC61aE10473c) [staticcall]
+    │   └─ ← [Return]
+    ├─ [559] MockERC20::balanceOf(0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7) [staticcall]
+    │   └─ ← [Return] 1000000000000000000 [1e18]
+    ├─ [0] VM::assertEq(1000000000000000000 [1e18], 1000000000000000000 [1e18]) [staticcall]
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 744.17µs (618.04µs CPU time)
+
+Ran 1 test suite in 849.18ms (744.17µs CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)
