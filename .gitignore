@@ -14,3 +14,6 @@ docs/
 .env
 
 /broadcast
+
+/lib/*
+!/lib/openzeppelin-contracts

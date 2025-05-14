@@ -1,0 +1,42 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/week03/TokenBankMultiTokenPermitTest.t.sol:TokenBankPermitTest
+[PASS] testPermitDeposit() (gas: 111468)
+Traces:
+  [116268] TokenBankPermitTest::testPermitDeposit()
+    ├─ [2613] MyToken::nonces(0x6E9972213BF459853FA33E28Ab7219e9157C8d02) [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [361] MyToken::DOMAIN_SEPARATOR() [staticcall]
+    │   └─ ← [Return] 0x47133852c428439caec9902de2cb330e249f30b0e04964de018a0a7ba0b64781
+    ├─ [0] VM::sign("<pk>", 0x30f79e9c06217680ff53fc1da4eaac7b424e9cbbd42bbc83424b77a535d7ecf3) [staticcall]
+    │   └─ ← [Return] 27, 0xe191b2ff8a7b47dd830fd309faf74c8488f22fd9d5a116b2a829640e2be0f4b8, 0x263f44e2b9489893081b7853497065f3011c1420c08470384fad819dbcab0e76
+    ├─ [0] VM::prank(0x6E9972213BF459853FA33E28Ab7219e9157C8d02)
+    │   └─ ← [Return]
+    ├─ [88852] TokenBankMultiTokenPermit::permitDeposit(MyToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 100000000 [1e8], 3601, 27, 0xe191b2ff8a7b47dd830fd309faf74c8488f22fd9d5a116b2a829640e2be0f4b8, 0x263f44e2b9489893081b7853497065f3011c1420c08470384fad819dbcab0e76)
+    │   ├─ [32366] MyToken::permit(0x6E9972213BF459853FA33E28Ab7219e9157C8d02, TokenBankMultiTokenPermit: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 100000000 [1e8], 3601, 27, 0xe191b2ff8a7b47dd830fd309faf74c8488f22fd9d5a116b2a829640e2be0f4b8, 0x263f44e2b9489893081b7853497065f3011c1420c08470384fad819dbcab0e76)
+    │   │   ├─ [3000] PRECOMPILES::ecrecover(0x30f79e9c06217680ff53fc1da4eaac7b424e9cbbd42bbc83424b77a535d7ecf3, 27, 102027819155847742954007596293190311869079587618859638390482877951142650770616, 17299675042457327723562539238665781477382619671413946446638214152144900787830) [staticcall]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000006e9972213bf459853fa33e28ab7219e9157c8d02
+    │   │   ├─ emit Approval(owner: 0x6E9972213BF459853FA33E28Ab7219e9157C8d02, spender: TokenBankMultiTokenPermit: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], value: 100000000 [1e8])
+    │   │   └─ ← [Stop]
+    │   ├─ [30877] MyToken::transferFrom(0x6E9972213BF459853FA33E28Ab7219e9157C8d02, TokenBankMultiTokenPermit: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 100000000 [1e8])
+    │   │   ├─ emit Transfer(from: 0x6E9972213BF459853FA33E28Ab7219e9157C8d02, to: TokenBankMultiTokenPermit: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], value: 100000000 [1e8])
+    │   │   └─ ← [Return] true
+    │   ├─ emit Deposit(user: 0x6E9972213BF459853FA33E28Ab7219e9157C8d02, token: MyToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], amount: 100000000 [1e8])
+    │   └─ ← [Stop]
+    ├─ [788] TokenBankMultiTokenPermit::balanceOf(0x6E9972213BF459853FA33E28Ab7219e9157C8d02, MyToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]) [staticcall]
+    │   └─ ← [Return] 100000000 [1e8]
+    ├─ [0] VM::assertEq(100000000 [1e8], 100000000 [1e8]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [626] MyToken::balanceOf(TokenBankMultiTokenPermit: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   └─ ← [Return] 100000000 [1e8]
+    ├─ [0] VM::assertEq(100000000 [1e8], 100000000 [1e8]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [626] MyToken::balanceOf(0x6E9972213BF459853FA33E28Ab7219e9157C8d02) [staticcall]
+    │   └─ ← [Return] 900000000 [9e8]
+    ├─ [0] VM::assertEq(900000000 [9e8], 900000000 [9e8]) [staticcall]
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 504.88µs (262.71µs CPU time)
+
+Ran 1 test suite in 1.44s (504.88µs CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

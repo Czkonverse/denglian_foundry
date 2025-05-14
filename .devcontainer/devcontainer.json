@@ -1,0 +1,16 @@
+{
+    "name": "Foundry Dev Container",
+    "image": "ghcr.io/foundry-rs/foundry:latest",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer"
+            ]
+        }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "remoteUser": "root"
+}
