@@ -4,11 +4,12 @@ pragma solidity ^0.8.25;
 import "forge-std/Test.sol";
 import "src/week03/TokenBankMultiTokenPermit.sol";
 import "src/week02/MyToken.sol";
+import "permit2/src/interfaces/IPermit2.sol";
 
 contract TokenBankPermitTest is Test {
     MyToken public token;
     TokenBankMultiTokenPermit public bank;
-
+    IPermit2 public permit2;
     address public user;
     uint256 public userPrivateKey;
 
@@ -18,7 +19,7 @@ contract TokenBankPermitTest is Test {
         user = vm.addr(userPrivateKey);
 
         token = new MyToken("MyToken", "MTK", 0);
-        bank = new TokenBankMultiTokenPermit();
+        bank = new TokenBankMultiTokenPermit(address(permit2));
 
         token.mint(user, 1000e6); // 6位小数
 
