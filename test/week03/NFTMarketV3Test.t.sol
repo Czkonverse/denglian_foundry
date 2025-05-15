@@ -64,7 +64,14 @@ contract NFTMarketV3Test is Test {
 
         // Seller signs permit for buyer
         bytes32 messageHash = keccak256(
-            abi.encodePacked(buyer, address(nft), tokenId, price)
+            abi.encodePacked(
+                buyer,
+                address(nft),
+                tokenId,
+                price,
+                market.nonces(buyer),
+                type(uint256).max
+            )
         );
         bytes32 ethSignedMessageHash = keccak256(
             abi.encodePacked("\x19Ethereum Signed Message:\n32", messageHash)
@@ -81,7 +88,7 @@ contract NFTMarketV3Test is Test {
 
         // Buyer executes permitBuy
         vm.prank(buyer);
-        market.permitBuy(address(nft), tokenId, price, signature);
+        market.permitBuy(address(nft), tokenId, price, type(uint256).max, signature);
 
         // Verify post-conditions
         assertEq(nft.ownerOf(tokenId), buyer);
@@ -96,7 +103,14 @@ contract NFTMarketV3Test is Test {
         uint256 fakeSignerKey = 0xBADBAD;
 
         bytes32 messageHash = keccak256(
-            abi.encodePacked(buyer, address(nft), tokenId, price)
+            abi.encodePacked(
+                buyer,
+                address(nft),
+                tokenId,
+                price,
+                market.nonces(buyer),
+                type(uint256).max
+            )
         );
         bytes32 ethSignedMessageHash = keccak256(
             abi.encodePacked("\x19Ethereum Signed Message:\n32", messageHash)
@@ -114,6 +128,6 @@ contract NFTMarketV3Test is Test {
         // Buyer tries to execute permitBuy with invalid signature
         vm.expectRevert(NFTMarketV3.NFTMarket__InvalidSignature.selector);
         vm.prank(buyer);
-        market.permitBuy(address(nft), tokenId, price, fakeSignature);
+        market.permitBuy(address(nft), tokenId, price, type(uint256).max, fakeSignature);
     }
 }

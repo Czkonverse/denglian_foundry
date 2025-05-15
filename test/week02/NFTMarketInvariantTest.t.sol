@@ -40,7 +40,7 @@ contract NFTMarketInvariantTest is Test {
     }
 
     // 不变量：market 永远不应该有 token
-    function invariantNoTokenInMarket() public {
+    function invariantNoTokenInMarket() public view {
         uint256 marketBalance = usdc.balanceOf(address(nftMarket));
         assertEq(marketBalance, 0, "NFTMarket should never hold any Token");
     }

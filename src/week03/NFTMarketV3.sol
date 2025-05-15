@@ -26,6 +26,7 @@ contract NFTMarketV3 is ReentrancyGuard {
     }
 
     mapping(address => mapping(uint256 => Listing)) public listings;
+    mapping(address => uint256) public nonces;
 
     event ListingCreated(
         address indexed nftAddress,
@@ -126,16 +127,25 @@ contract NFTMarketV3 is ReentrancyGuard {
         address nftAddress,
         uint256 tokenId,
         uint256 price,
+        uint256 deadline,
         bytes calldata signature
     ) external nonReentrant {
-        Listing memory listing = listings[nftAddress][tokenId];
+        if (block.timestamp > deadline) revert("Signature expired");
 
+        Listing memory listing = listings[nftAddress][tokenId];
         address tokenSeller = listing.seller;
 
         if (listing.price != price) revert NFTMarket__NotRequiredToken();
 
         bytes32 messageHash = keccak256(
-            abi.encodePacked(msg.sender, nftAddress, tokenId, price)
+            abi.encodePacked(
+                msg.sender,
+                nftAddress,
+                tokenId,
+                price,
+                nonces[msg.sender],
+                deadline
+            )
         );
         bytes32 ethSignedHash = _toEthSignedMessageHash(messageHash);
 
@@ -144,6 +154,8 @@ contract NFTMarketV3 is ReentrancyGuard {
         if (recovered != tokenSeller) {
             revert NFTMarket__InvalidSignature();
         }
+
+        nonces[msg.sender]++;
 
         _buy(nftAddress, tokenId, msg.sender);
     }
