@@ -4,7 +4,6 @@ pragma solidity ^0.8.25;
 import "forge-std/Test.sol";
 import "src/week03/TokenBankMultiTokenPermit.sol";
 import "src/week02/MyToken.sol";
-import "permit2/src/interfaces/IPermit2.sol";
 
 contract TokenBankPermitTest is Test {
     MyToken public token;
