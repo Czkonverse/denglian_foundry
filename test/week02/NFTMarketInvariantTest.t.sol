@@ -21,7 +21,7 @@ contract NFTMarketInvariantTest is Test {
         vm.label(buyer, "Buyer");
 
         nftMarket = new NFTMarket();
-        usdc = new ERC20StdOnlyOwner("USDC", "USDC", 6);
+        usdc = new ERC20StdOnlyOwner("USDC", "USDC", 6, 1_000_000 * 1e6);
         nft = new ERC721Std("NFT", "NFT");
 
         usdc.mint(buyer, 1_000_000 * 1e6);
