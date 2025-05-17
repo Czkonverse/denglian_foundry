@@ -4,20 +4,10 @@ pragma solidity ^0.8.25;
 contract MultiSigWallet {
     // Events
     event ProposalCreated(
-        uint256 indexed proposalId,
-        address indexed proposer,
-        address target,
-        uint256 value,
-        bytes data
+        uint256 indexed proposalId, address indexed proposer, address target, uint256 value, bytes data
     );
-    event ProposalConfirmed(
-        uint256 indexed proposalId,
-        address indexed confirmer
-    );
-    event ProposalExecuted(
-        uint256 indexed proposalId,
-        address indexed executor
-    );
+    event ProposalConfirmed(uint256 indexed proposalId, address indexed confirmer);
+    event ProposalExecuted(uint256 indexed proposalId, address indexed executor);
 
     // State variables
     address[] public owners;
@@ -38,10 +28,7 @@ contract MultiSigWallet {
     // Constructor
     constructor(address[] memory _owners, uint256 _threshold) {
         require(_owners.length > 0, "Owners required");
-        require(
-            _threshold > 0 && _threshold <= _owners.length,
-            "Invalid threshold"
-        );
+        require(_threshold > 0 && _threshold <= _owners.length, "Invalid threshold");
 
         for (uint256 i = 0; i < _owners.length; i++) {
             address owner = _owners[i];
@@ -56,28 +43,10 @@ contract MultiSigWallet {
     }
 
     // Submit a proposal for arbitrary call
-    function submitProposal(
-        address _target,
-        uint256 _value,
-        bytes calldata _data
-    ) external onlyOwner {
-        proposals.push(
-            Proposal({
-                target: _target,
-                value: _value,
-                data: _data,
-                executed: false,
-                confirmCount: 0
-            })
-        );
+    function submitProposal(address _target, uint256 _value, bytes calldata _data) external onlyOwner {
+        proposals.push(Proposal({target: _target, value: _value, data: _data, executed: false, confirmCount: 0}));
 
-        emit ProposalCreated(
-            proposals.length - 1,
-            msg.sender,
-            _target,
-            _value,
-            _data
-        );
+        emit ProposalCreated(proposals.length - 1, msg.sender, _target, _value, _data);
     }
 
     // Confirm proposal
@@ -100,9 +69,7 @@ contract MultiSigWallet {
 
         proposal.executed = true;
 
-        (bool success, ) = proposal.target.call{value: proposal.value}(
-            proposal.data
-        );
+        (bool success,) = proposal.target.call{value: proposal.value}(proposal.data);
         require(success, "Execution failed");
 
         emit ProposalExecuted(proposalId, msg.sender);

@@ -6,20 +6,10 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract MultiSigWallet {
     // event
     event ProposalCreated(
-        uint256 indexed proposalId,
-        address indexed proposer,
-        address token,
-        address to,
-        uint256 amount
+        uint256 indexed proposalId, address indexed proposer, address token, address to, uint256 amount
     );
-    event ProposalConfirmed(
-        uint256 indexed proposalId,
-        address indexed confirmer
-    );
-    event ProposalExecuted(
-        uint256 indexed proposalId,
-        address indexed executor
-    );
+    event ProposalConfirmed(uint256 indexed proposalId, address indexed confirmer);
+    event ProposalExecuted(uint256 indexed proposalId, address indexed executor);
 
     // state variables
     address[] public owners;
@@ -40,10 +30,7 @@ contract MultiSigWallet {
     // constructor
     constructor(address[] memory _owners, uint256 _threshold) {
         require(_owners.length > 0, "Owners required");
-        require(
-            _threshold > 0 && _threshold <= _owners.length,
-            "Invalid threshold"
-        );
+        require(_threshold > 0 && _threshold <= _owners.length, "Invalid threshold");
 
         for (uint256 i = 0; i < _owners.length; i++) {
             address owner = _owners[i];
@@ -59,11 +46,7 @@ contract MultiSigWallet {
 
     // 提交提案
     // 任何⼀个拥有者都可以提交提案
-    function submitProposal(
-        address _token,
-        address _to,
-        uint256 _amount
-    ) external returns (uint256) {
+    function submitProposal(address _token, address _to, uint256 _amount) external returns (uint256) {
         require(isOwner[msg.sender], "Not an owner");
         require(_token != address(0), "Invalid token address");
         require(_to != address(0), "Invalid recipient address");
@@ -114,10 +97,7 @@ contract MultiSigWallet {
         proposal.executed = true;
 
         // 执行ERC20转账
-        bool success = IERC20(proposal.token).transfer(
-            proposal.to,
-            proposal.amount
-        );
+        bool success = IERC20(proposal.token).transfer(proposal.to, proposal.amount);
         require(success, "ERC20 transfer failed");
 
         emit ProposalExecuted(proposalId, msg.sender);

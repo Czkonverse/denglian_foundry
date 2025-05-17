@@ -1,40 +1,38 @@
 {
-    // 容器的名称
-    "name": "Foundry Dev Container",
-    
-    // 使用的 Docker 镜像，这里使用 Foundry 官方镜像
-    "image": "ghcr.io/foundry-rs/foundry:latest",
-    
-    // 工作目录路径，指定容器内的工作目录
-    "workspaceFolder": "/workspace",
-    
-    // VS Code 的自定义配置
-    "customizations": {
-        "vscode": {
-            // 需要安装的 VS Code 扩展
-            "extensions": [
-                "JuanBlanco.solidity",        // Solidity 语言支持
-                "tintinweb.solidity-visual-auditor",  // Solidity 安全审计工具
-                "ms-vscode.vscode-node-azure-pack",   // Node.js 支持包
-                "esbenp.prettier-vscode"    // 代码格式化工具
-            ],
-            
-            // VS Code 编辑器设置
-            "settings": {
-                "editor.semanticHighlighting.enabled": true,  // 启用语义高亮
-                "editor.formatOnSave": true,         // 保存时自动格式化
-                "solidity.defaultCompiler": "remote", // 使用远程 Solidity 编译器
-                "solidity.compileUsingRemoteVersion": "latest" // 使用最新版本的编译器
-            }
-        }
-    },
-    
-    // 文件系统挂载配置
-    "mounts": [
-        // 将本地工作目录挂载到容器的 /workspace
-        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-    ],
-    
-    // 容器内使用的用户，这里设置为 root
-    "remoteUser": "root"
+  "name": "Foundry Solidity Dev Container",
+  "image": "foundry:latest",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "NomicFoundation.hardhat-solidity",
+        "tamasfe.even-better-toml"
+      ],
+      "settings": {
+        "editor.semanticHighlighting.enabled": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "NomicFoundation.hardhat-solidity",
+
+        "[solidity]": {
+          "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[toml]": {
+          "editor.defaultFormatter": "tamasfe.even-better-toml"
+        },
+
+        "solidity.formatter": "forge"
+      }
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "remoteUser": "root"
 }

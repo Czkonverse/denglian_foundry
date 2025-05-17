@@ -29,40 +29,25 @@ contract NFTMarketV3 is ReentrancyGuard {
     mapping(address => uint256) public nonces;
 
     event ListingCreated(
-        address indexed nftAddress,
-        uint256 indexed tokenId,
-        address indexed erc20Token,
-        uint256 price
+        address indexed nftAddress, uint256 indexed tokenId, address indexed erc20Token, uint256 price
     );
     event ListingRemoved(address indexed nftAddress, uint256 indexed tokenId);
     event NFTPurchased(
-        address indexed nftAddress,
-        uint256 indexed tokenId,
-        address buyer,
-        address seller,
-        uint256 price
+        address indexed nftAddress, uint256 indexed tokenId, address buyer, address seller, uint256 price
     );
 
-    function listItem(
-        address nftAddress,
-        uint256 tokenId,
-        address erc20Token,
-        uint256 price
-    ) external {
+    function listItem(address nftAddress, uint256 tokenId, address erc20Token, uint256 price) external {
         IERC721 nft = IERC721(nftAddress);
 
         if (nft.ownerOf(tokenId) != msg.sender) revert NFTMarket__NotOwner();
-        if (nft.getApproved(tokenId) != address(this))
+        if (nft.getApproved(tokenId) != address(this)) {
             revert NFTMarket__NotApprovedForTransfer();
-        if (listings[nftAddress][tokenId].seller != address(0))
+        }
+        if (listings[nftAddress][tokenId].seller != address(0)) {
             revert NFTMarket__AlreadyListed();
+        }
 
-        listings[nftAddress][tokenId] = Listing(
-            msg.sender,
-            nftAddress,
-            erc20Token,
-            price
-        );
+        listings[nftAddress][tokenId] = Listing(msg.sender, nftAddress, erc20Token, price);
 
         emit ListingCreated(nftAddress, tokenId, erc20Token, price);
     }
@@ -75,10 +60,7 @@ contract NFTMarketV3 is ReentrancyGuard {
         emit ListingRemoved(nftAddress, tokenId);
     }
 
-    function buyItem(
-        address nftAddress,
-        uint256 tokenId
-    ) external nonReentrant {
+    function buyItem(address nftAddress, uint256 tokenId) external nonReentrant {
         _buy(nftAddress, tokenId, msg.sender);
     }
 
@@ -94,42 +76,21 @@ contract NFTMarketV3 is ReentrancyGuard {
 
         delete listings[nftAddress][tokenId];
 
-        require(
-            token.transferFrom(buyer, listing.seller, listing.price),
-            "ERC20 transfer failed"
-        );
+        require(token.transferFrom(buyer, listing.seller, listing.price), "ERC20 transfer failed");
 
-        IERC721(listing.nftAddress).safeTransferFrom(
-            listing.seller,
-            buyer,
-            tokenId
-        );
+        IERC721(listing.nftAddress).safeTransferFrom(listing.seller, buyer, tokenId);
 
-        emit NFTPurchased(
-            nftAddress,
-            tokenId,
-            buyer,
-            listing.seller,
-            listing.price
-        );
+        emit NFTPurchased(nftAddress, tokenId, buyer, listing.seller, listing.price);
     }
 
-    function _toEthSignedMessageHash(
-        bytes32 hash
-    ) internal pure returns (bytes32) {
-        return
-            keccak256(
-                abi.encodePacked("\x19Ethereum Signed Message:\n32", hash)
-            );
+    function _toEthSignedMessageHash(bytes32 hash) internal pure returns (bytes32) {
+        return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", hash));
     }
 
-    function permitBuy(
-        address nftAddress,
-        uint256 tokenId,
-        uint256 price,
-        uint256 deadline,
-        bytes calldata signature
-    ) external nonReentrant {
+    function permitBuy(address nftAddress, uint256 tokenId, uint256 price, uint256 deadline, bytes calldata signature)
+        external
+        nonReentrant
+    {
         if (block.timestamp > deadline) revert("Signature expired");
 
         Listing memory listing = listings[nftAddress][tokenId];
@@ -137,16 +98,8 @@ contract NFTMarketV3 is ReentrancyGuard {
 
         if (listing.price != price) revert NFTMarket__NotRequiredToken();
 
-        bytes32 messageHash = keccak256(
-            abi.encodePacked(
-                msg.sender,
-                nftAddress,
-                tokenId,
-                price,
-                nonces[msg.sender],
-                deadline
-            )
-        );
+        bytes32 messageHash =
+            keccak256(abi.encodePacked(msg.sender, nftAddress, tokenId, price, nonces[msg.sender], deadline));
         bytes32 ethSignedHash = _toEthSignedMessageHash(messageHash);
 
         address recovered = ethSignedHash.recover(signature);

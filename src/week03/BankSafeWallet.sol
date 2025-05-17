@@ -13,10 +13,7 @@ contract BankSafeWallet {
     /// @notice 任何人都可以将任意 ERC20 Token 存入合约
     function deposit(address token, uint256 amount) external {
         require(amount > 0, "Amount must be > 0");
-        require(
-            IERC20(token).transferFrom(msg.sender, address(this), amount),
-            "Transfer failed"
-        );
+        require(IERC20(token).transferFrom(msg.sender, address(this), amount), "Transfer failed");
     }
 
     /// @notice 仅管理员（Safe）可提取 ERC20 Token

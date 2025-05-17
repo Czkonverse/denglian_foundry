@@ -3,6 +3,8 @@ pragma solidity ^0.8.20;
 
 import "solmate/utils/SafeTransferLib.sol";
 import "solmate/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
 import {IPermit2} from "src/week03/tokenbank/IPermit2.sol";
 
 contract TokenBankMultiTokenPermit is ReentrancyGuard {
@@ -31,7 +33,7 @@ contract TokenBankMultiTokenPermit is ReentrancyGuard {
     function deposit(address token, uint256 amount) external {
         require(amount > 0, "amount must > 0");
 
-        token.safeTransferFrom(msg.sender, address(this), amount);
+        IERC20(token).transferFrom(msg.sender, address(this), amount);
         balances[msg.sender][token] += amount;
 
         emit Deposit(msg.sender, token, amount);
@@ -43,43 +45,25 @@ contract TokenBankMultiTokenPermit is ReentrancyGuard {
         require(balances[msg.sender][token] >= amount, "insufficient balance");
 
         balances[msg.sender][token] -= amount;
-        token.safeTransfer(msg.sender, amount);
+        IERC20(token).transfer(msg.sender, amount);
 
         emit Withdraw(msg.sender, token, amount);
     }
 
     // 使用Permit授权方式进行存款
-    function permitDeposit(
-        address token,
-        uint256 amount,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {
-        if (amount == 0)
+    function permitDeposit(address token, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external {
+        if (amount == 0) {
             revert TokenBankMultiTokenPermit__AmountMustBeGreaterThanZero();
+        }
 
         // 第一步：调用 token 合约的 permit 授权自己
-        IERC20Permit(token).permit(
-            msg.sender,
-            address(this),
-            amount,
-            deadline,
-            v,
-            r,
-            s
-        );
+        IERC20Permit(token).permit(msg.sender, address(this), amount, deadline, v, r, s);
 
         // 第二步：执行转账
-        bool success = IERC20(token).transferFrom(
-            msg.sender,
-            address(this),
-            amount
-        );
-        if (!success) revert TokenBank__TransferFailed();
+        bool success = IERC20(token).transferFrom(msg.sender, address(this), amount);
+        if (!success) revert TokenBankMultiTokenPermit__TransferFailed();
 
-        s_deposits[msg.sender][token] += amount;
+        balances[msg.sender][token] += amount;
         emit Deposit(msg.sender, token, amount);
     }
 
