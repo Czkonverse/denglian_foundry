@@ -1,6 +1,6 @@
 {
   "name": "Foundry Solidity Dev Container",
-  "image": "foundry:latest",
+  "image": "ghcr.io/foundry-rs/foundry:latest",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
@@ -35,5 +35,8 @@
     "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
     "source=${env:HOME}/.ssh,target=/root/.ssh,type=bind"
   ],
-  "remoteUser": "root"
+  "remoteUser": "root",
+  "containerEnv": {
+    "FOUNDRY_DISABLE_NIGHTLY_WARNING": "1"
+  }
 }
