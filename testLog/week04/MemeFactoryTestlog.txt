@@ -1,0 +1,147 @@
+No files changed, compilation skipped
+
+Ran 3 tests for test/week04/MemeFactory.t.sol:MemeFactoryTest
+[PASS] testDeployAndMint() (gas: 422670)
+Traces:
+  [422670] MemeFactoryTest::testDeployAndMint()
+    ├─ [0] VM::prank(0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return]
+    ├─ [272607] MemeFactory::deployInscription("WOW", 1000000000000000000000 [1e21], 100000000000000000000 [1e20], 1000000000000000000 [1e18])
+    │   ├─ [9031] → new <unknown>@0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    │   │   └─ ← [Return] 45 bytes of code
+    │   ├─ [183687] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::initialize("Meme: WOW", "WOW", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 1000000000000000000000 [1e21], 100000000000000000000 [1e20], 1000000000000000000 [1e18])
+    │   │   ├─ [180964] MemeToken::initialize("Meme: WOW", "WOW", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 1000000000000000000000 [1e21], 100000000000000000000 [1e20], 1000000000000000000 [1e18]) [delegatecall]
+    │   │   │   ├─ emit Initialized(version: 1)
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ emit MemeDeployed(token: 0x4F9DA333DCf4E5A53772791B95c161B2FC041859, owner: 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    ├─ [562] MemeFactory::isMemeToken(0x4F9DA333DCf4E5A53772791B95c161B2FC041859) [staticcall]
+    │   └─ ← [Return] true
+    ├─ [0] VM::assertTrue(true) [staticcall]
+    │   └─ ← [Return]
+    ├─ [531] MemeFactory::memeTokenToOwner(0x4F9DA333DCf4E5A53772791B95c161B2FC041859) [staticcall]
+    │   └─ ← [Return] 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf
+    ├─ [0] VM::assertEq(0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf) [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   └─ ← [Return]
+    ├─ [0] VM::deal(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, 10000000000000000000 [1e19])
+    │   └─ ← [Return]
+    ├─ [115433] MemeFactory::mintInscription{value: 1000000000000000000}(0x4F9DA333DCf4E5A53772791B95c161B2FC041859)
+    │   ├─ [482] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::price() [staticcall]
+    │   │   ├─ [316] MemeToken::price() [delegatecall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ [71463] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   │   ├─ [71294] MemeToken::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796) [delegatecall]
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, value: 100000000000000000000 [1e20])
+    │   │   │   ├─ emit MemeMinted(to: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, amount: 100000000000000000000 [1e20])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ [0] 0x6C1a01C2aB554930A937B0a2E8105fB47946c679::fallback{value: 10000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [0] 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf::fallback{value: 990000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [528] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::perMint() [staticcall]
+    │   │   ├─ [362] MemeToken::perMint() [delegatecall]
+    │   │   │   └─ ← [Return] 100000000000000000000 [1e20]
+    │   │   └─ ← [Return] 100000000000000000000 [1e20]
+    │   ├─ emit MemeMinted(token: 0x4F9DA333DCf4E5A53772791B95c161B2FC041859, user: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, amount: 100000000000000000000 [1e20], price: 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [798] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::balanceOf(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796) [staticcall]
+    │   ├─ [626] MemeToken::balanceOf(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796) [delegatecall]
+    │   │   └─ ← [Return] 100000000000000000000 [1e20]
+    │   └─ ← [Return] 100000000000000000000 [1e20]
+    ├─ [0] VM::assertEq(100000000000000000000 [1e20], 100000000000000000000 [1e20]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq(10000000000000000 [1e16], 10000000000000000 [1e16]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq(100990000000000000000 [1.009e20], 100990000000000000000 [1.009e20]) [staticcall]
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+[PASS] testMintExceedsMaxSupply() (gas: 424197)
+Traces:
+  [424197] MemeFactoryTest::testMintExceedsMaxSupply()
+    ├─ [0] VM::prank(0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return]
+    ├─ [272607] MemeFactory::deployInscription("LUL", 100000000000000000000 [1e20], 100000000000000000000 [1e20], 1000000000000000000 [1e18])
+    │   ├─ [9031] → new <unknown>@0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    │   │   └─ ← [Return] 45 bytes of code
+    │   ├─ [183687] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::initialize("Meme: LUL", "LUL", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 100000000000000000000 [1e20], 100000000000000000000 [1e20], 1000000000000000000 [1e18])
+    │   │   ├─ [180964] MemeToken::initialize("Meme: LUL", "LUL", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 100000000000000000000 [1e20], 100000000000000000000 [1e20], 1000000000000000000 [1e18]) [delegatecall]
+    │   │   │   ├─ emit Initialized(version: 1)
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ emit MemeDeployed(token: 0x4F9DA333DCf4E5A53772791B95c161B2FC041859, owner: 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    ├─ [0] VM::prank(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   └─ ← [Return]
+    ├─ [120433] MemeFactory::mintInscription{value: 1000000000000000000}(0x4F9DA333DCf4E5A53772791B95c161B2FC041859)
+    │   ├─ [482] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::price() [staticcall]
+    │   │   ├─ [316] MemeToken::price() [delegatecall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ [71463] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   │   ├─ [71294] MemeToken::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796) [delegatecall]
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, value: 100000000000000000000 [1e20])
+    │   │   │   ├─ emit MemeMinted(to: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, amount: 100000000000000000000 [1e20])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ [0] 0x6C1a01C2aB554930A937B0a2E8105fB47946c679::fallback{value: 10000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [0] 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf::fallback{value: 990000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [528] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::perMint() [staticcall]
+    │   │   ├─ [362] MemeToken::perMint() [delegatecall]
+    │   │   │   └─ ← [Return] 100000000000000000000 [1e20]
+    │   │   └─ ← [Return] 100000000000000000000 [1e20]
+    │   ├─ emit MemeMinted(token: 0x4F9DA333DCf4E5A53772791B95c161B2FC041859, user: 0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796, amount: 100000000000000000000 [1e20], price: 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(custom error 0xc31eb0e0: c30436e900000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [2764] MemeFactory::mintInscription{value: 1000000000000000000}(0x4F9DA333DCf4E5A53772791B95c161B2FC041859)
+    │   ├─ [482] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::price() [staticcall]
+    │   │   ├─ [316] MemeToken::price() [delegatecall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ [1079] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   │   ├─ [908] MemeToken::mintTo(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796) [delegatecall]
+    │   │   │   └─ ← [Revert] ExceedsMaxSupply()
+    │   │   └─ ← [Revert] ExceedsMaxSupply()
+    │   └─ ← [Revert] ExceedsMaxSupply()
+    └─ ← [Stop]
+
+[PASS] testMintWrongPriceFails() (gas: 294709)
+Traces:
+  [294709] MemeFactoryTest::testMintWrongPriceFails()
+    ├─ [0] VM::prank(0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return]
+    ├─ [272607] MemeFactory::deployInscription("LOL", 500000000000000000000 [5e20], 50000000000000000000 [5e19], 2000000000000000000 [2e18])
+    │   ├─ [9031] → new <unknown>@0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    │   │   └─ ← [Return] 45 bytes of code
+    │   ├─ [183687] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::initialize("Meme: LOL", "LOL", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 500000000000000000000 [5e20], 50000000000000000000 [5e19], 2000000000000000000 [2e18])
+    │   │   ├─ [180964] MemeToken::initialize("Meme: LOL", "LOL", 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf, 500000000000000000000 [5e20], 50000000000000000000 [5e19], 2000000000000000000 [2e18]) [delegatecall]
+    │   │   │   ├─ emit Initialized(version: 1)
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ emit MemeDeployed(token: 0x4F9DA333DCf4E5A53772791B95c161B2FC041859, owner: 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf)
+    │   └─ ← [Return] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859
+    ├─ [0] VM::prank(0xDbc23AE43a150ff8884B02Cea117b22D1c3b9796)
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Incorrect ETH)
+    │   └─ ← [Return]
+    ├─ [1433] MemeFactory::mintInscription{value: 1000000000000000000}(0x4F9DA333DCf4E5A53772791B95c161B2FC041859)
+    │   ├─ [482] 0x4F9DA333DCf4E5A53772791B95c161B2FC041859::price() [staticcall]
+    │   │   ├─ [316] MemeToken::price() [delegatecall]
+    │   │   │   └─ ← [Return] 2000000000000000000 [2e18]
+    │   │   └─ ← [Return] 2000000000000000000 [2e18]
+    │   └─ ← [Revert] Incorrect ETH
+    └─ ← [Stop]
+
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 559.50µs (327.71µs CPU time)
+
+Ran 1 test suite in 1.21s (559.50µs CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)
