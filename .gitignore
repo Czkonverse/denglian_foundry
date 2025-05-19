@@ -20,3 +20,4 @@ docs/
 !/lib/openzeppelin-contracts
 
 *.log
+.DS_Store
