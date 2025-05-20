@@ -17,8 +17,6 @@ contract NFTMarketV3 is ReentrancyGuard {
     error NFTMarket__AlreadyListed();
     error NFTMarket__BuyerIsSeller();
     error NFTMarket__InvalidSignature();
-    error NFTMarket__BuyERC20TransferFailed();
-    error NFTMarket__PermitBuySignaturExpired();
 
     struct Listing {
         address seller;
@@ -78,9 +76,7 @@ contract NFTMarketV3 is ReentrancyGuard {
 
         delete listings[nftAddress][tokenId];
 
-        if (!token.transferFrom(buyer, listing.seller, listing.price)) {
-            revert NFTMarket__BuyERC20TransferFailed();
-        }
+        require(token.transferFrom(buyer, listing.seller, listing.price), "ERC20 transfer failed");
 
         IERC721(listing.nftAddress).safeTransferFrom(listing.seller, buyer, tokenId);
 
@@ -95,7 +91,7 @@ contract NFTMarketV3 is ReentrancyGuard {
         external
         nonReentrant
     {
-        if (block.timestamp > deadline) revert NFTMarket__PermitBuySignaturExpired();
+        if (block.timestamp > deadline) revert("Signature expired");
 
         Listing memory listing = listings[nftAddress][tokenId];
         address tokenSeller = listing.seller;

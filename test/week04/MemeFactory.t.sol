@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Test.sol";
-import "src/week04/MemeToken.sol";
-import "src/week04/MemeFactory.sol";
+import "src/week04/MemeFactory/MemeToken.sol";
+import "src/week04/MemeFactory/MemeFactory.sol";
 
 contract MemeFactoryTest is Test {
     MemeToken public logic;
