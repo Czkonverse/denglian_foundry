@@ -1,0 +1,14 @@
+Compiling 1 files with Solc 0.8.25
+Solc 0.8.25 finished in 87.34ms
+Compiler run successful!
+
+Ran 6 tests for src/week04/ERC721Upgrade/UpgradeableERC721.t.sol:UpgradeableERC721Test
+[PASS] testInitialState() (gas: 32060)
+[PASS] testMinting() (gas: 78160)
+[PASS] testOnlyOwnerCanMint() (gas: 18309)
+[PASS] testOnlyOwnerCanUpgrade() (gas: 1591634)
+[PASS] testUpgradeToV2() (gas: 1707238)
+[PASS] testV2NewFunctionality() (gas: 1692091)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 5.10ms (6.88ms CPU time)
+
+Ran 1 test suite in 106.33ms (5.10ms CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

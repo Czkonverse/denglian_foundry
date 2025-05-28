@@ -1,0 +1,331 @@
+No files changed, compilation skipped
+
+Ran 8 tests for src/week04/NFTMarket/NFTMarketUpgradeableTest.t.sol:NFTMarketUpgradeableTest
+[PASS] test_CompleteUpgradeFlow() (gas: 10924881)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Complete Upgrade Flow Test ===
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  1. V1 deployed
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9
+  Implementation: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  2. V1 functionality tested
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0xa0Cb889707d426A7A386870A03bc70d1b0697598
+  Implementation: 0xc7183455a4C133Ae270771860664b6B7ec320bB1
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0xc7183455a4C133Ae270771860664b6B7ec320bB1
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+  3. Upgraded to V2
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x03A6a84cD762D9707A21605b548aaaB891562aAb
+  Implementation: 0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+  
+=== Testing V2 New Functionality ===
+  Initial seller nonce: 0
+  Generated signature hash:
+  0xd9a3e9f86738fec0e884ff921e18d40aa9f66b1c7a39b3cb305a38134587f628
+  V2 new functions work correctly
+  4. V2 new functionality tested
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+  Implementation: 0x15cF58144EF33af1e14b5208015d11F9143E27b9
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0x15cF58144EF33af1e14b5208015d11F9143E27b9
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0x2a07706473244BC757E10F2a9E86fB532828afe3
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+  
+=== Testing V1 Functionality Still Works After Upgrade ===
+  V1 functionality preserved after upgrade
+  5. V1 functionality preserved
+
+[PASS] test_DeployV1Contract() (gas: 1251661)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+
+[PASS] test_OnlyOwnerCanUpgrade() (gas: 2599755)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing Upgrade Authorization ===
+  Non-owner cannot upgrade
+  Owner can upgrade
+
+[PASS] test_UpgradePreservesProxyAddress() (gas: 2595042)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Proxy address preserved during upgrade
+  Proxy address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+
+[PASS] test_UpgradeToV2() (gas: 2782709)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+
+[PASS] test_V1BasicFunctionality() (gas: 1390762)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+
+[PASS] test_V1FunctionalityStillWorksAfterUpgrade() (gas: 2951637)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+  
+=== Testing V1 Functionality Still Works After Upgrade ===
+  V1 functionality preserved after upgrade
+
+[PASS] test_V2NewFunctionality() (gas: 2834592)
+Logs:
+  === Setup Complete ===
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  Buyer: 0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  Payment Token: 0x88F59F8826af5e695B13cA934d6c7999875A9EeA
+  NFT Contract: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  
+=== Testing V1 Deployment ===
+  Proxy Address: 0x2e234DAe75C793f67A35089C9d99245E1C58470b
+  Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  Version: 1.0.0
+  Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  
+=== Testing V1 Basic Functionality ===
+  V1 listing functionality works
+  Listed NFT: 0xCeF98e10D1e80378A9A74Ce074132B66CDD5e88d
+  Token ID: 0
+  Price: 100000000000000000000
+  
+=== Testing Upgrade to V2 ===
+  Before Upgrade:
+  - Version: 1.0.0
+  - Implementation: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  - Existing listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Existing listing price: 100000000000000000000
+  
+After Upgrade:
+  - Version: 2.0.0
+  - Implementation: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+  - Owner: 0x7c8999dC9a822c1f0Df42023113EDB4FDd543266
+  Upgrade successful!
+  State preserved!
+  - Preserved listing seller: 0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174
+  - Preserved listing price: 100000000000000000000
+  
+=== Testing V2 New Functionality ===
+  Initial seller nonce: 0
+  Generated signature hash:
+  0xd9a3e9f86738fec0e884ff921e18d40aa9f66b1c7a39b3cb305a38134587f628
+  V2 new functions work correctly
+
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 1.59ms (2.57ms CPU time)
+
+Ran 1 test suite in 99.14ms (1.59ms CPU time): 8 tests passed, 0 failed, 0 skipped (8 total tests)
